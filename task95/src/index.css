@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'DungGeunMo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  html {
+    @apply bg-background-gray text-text;
+    font-family: 'DungGeunMo', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button {
+    @apply px-4 py-2 text-text hover:bg-opacity-90 transition-all duration-200;
+  }
+}
+
+@layer components {
+  .container {
+    @apply bg-background-gray;
+    box-shadow: 4px 4px 0 0 #393939;
+    border-left: 4px solid #E9ECEB;
+    border-top: 4px solid #E9ECEB;
+  }
+
+  .banner {
+    @apply bg-background-navy flex items-center justify-between;
+  }
+
+  .button {
+    width: 2em;
+    height: 2em;
+  }
+
+  .box {
+    @apply bg-background-gray shadow-md;
+  }
+
+  .box-focus {
+    @apply box hover:bg-background-teal transition-colors duration-200;
+  }
+
+  .box-border {
+    @apply box border-2 border-background-navy;
+  }
+
+  .box-flex {
+    @apply box flex flex-col gap-4;
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+
