@@ -26,9 +26,26 @@
 @layer components {
   .container {
     @apply bg-background-gray;
-    box-shadow: 4px 4px 0 0 #393939;
-    border-left: 4px solid #E9ECEB;
-    border-top: 4px solid #E9ECEB;
+    border-right: 3px solid #393939;
+    border-bottom: 3px solid #393939;
+    border-left: 3px solid #E9ECEB;
+    border-top: 3px solid #E9ECEB;
+  }
+
+  .container-focus {
+    @apply bg-background-white;
+    border-right: 3px solid #E9ECEB;
+    border-bottom: 3px solid #FFFFFF;
+    border-left: 3px solid #393939;
+    border-top: 3px solid #393939;
+  }
+
+  .container-todo {
+    @apply bg-background-white;
+    border-right: 3px solid #E9ECEB;
+    border-bottom: 3px solid #E9ECEB;
+    border-left: 3px solid #393939;
+    border-top: 3px solid #393939;
   }
 
   .banner {
