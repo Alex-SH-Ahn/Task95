@@ -7,6 +7,7 @@ interface IconButtonProps {
   size: number;
   className?: string;
   href?: string;
+  handleClick?: () => void;
 }
 
 const IconButton: React.FC<IconButtonProps> = ({
@@ -15,12 +16,14 @@ const IconButton: React.FC<IconButtonProps> = ({
   paddingRight,
   size,
   href,
+  handleClick,
   className = '',
 }) => {
   const iconPath = `../src/assets/icons/${iconName}.png`;
 
   const button = (
     <button
+      onClick={handleClick}
       className={`button container flex items-center justify-center ${className} p-0 w-[2rem] h-[2rem] sm:w-[2.5rem] sm:h-[2.5rem]`}
     >
       <img

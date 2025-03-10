@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import IconButton from '../components/IconButton';
+import GuidePopup from '../components/GuidePopup';
 import Todo from './Todo';
 
 function MainPage() {
+  const [isGuideOpen, setIsGuideOpen] = useState(true);
+
   return (
     <div className="container h-[80vh] w-[80vw]">
       <div className="banner m-1 flex items-center justify-between sm:px-5 sm:py-3 px-2 py-1">
@@ -13,6 +17,7 @@ function MainPage() {
             size={23}
             paddingRight={1}
             className="mr-2"
+            handleClick={() => setIsGuideOpen(true)}
           />
           <IconButton
             iconName="profile"
@@ -34,6 +39,8 @@ function MainPage() {
       <div className="flex h-[90%] w-[80vw] items-center justify-center">
         <Todo />
       </div>
+
+      <GuidePopup isOpen={isGuideOpen} onClose={() => setIsGuideOpen(false)} />
     </div>
   );
 }
