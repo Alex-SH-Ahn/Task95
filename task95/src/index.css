@@ -33,7 +33,7 @@
   }
 
   .container-focus {
-    @apply bg-background-white;
+    @apply bg-[#FFFFFFFF];
     border-right: 3px solid #E9ECEB;
     border-bottom: 3px solid #FFFFFF;
     border-left: 3px solid #393939;

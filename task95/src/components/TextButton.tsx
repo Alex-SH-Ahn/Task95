@@ -25,7 +25,7 @@ const TextButton: React.FC<TextButtonProps> = ({
 
   return (
     <button
-      className={`button mb-2 mr-2 flex min-h-[35px] min-w-fit items-start whitespace-nowrap px-4 py-2 text-lg leading-[0.7rem] ${
+      className={`button mb-2 mr-2 flex min-h-[35px] items-center justify-center min-w-fit whitespace-nowrap px-4 py-2 text-lg leading-[0.7rem] ${
         isActive ? 'container-focus min-h-[43px]' : 'container'
       } ${className} ${
         isActive ? '' : 'hover:bg-background-darkGray'

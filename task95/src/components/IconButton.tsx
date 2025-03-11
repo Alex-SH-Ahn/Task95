@@ -7,7 +7,7 @@ interface IconButtonProps {
   size: number;
   className?: string;
   href?: string;
-  handleClick?: () => void;
+  handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const IconButton: React.FC<IconButtonProps> = ({

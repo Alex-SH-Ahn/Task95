@@ -12,15 +12,15 @@ function GuidePopup({ isOpen, onClose }: GuidePopupProps) {
   if (!isOpen) return null;
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'ko' ? 'en' : 'ko');
+    setLanguage((prev) => (prev === 'ko' ? 'en' : 'ko'));
   };
 
   return (
     <div className="fixed inset-0 z-50">
       {/* 팝업 컨텐츠 */}
-      <div className="container relative top-40 left-[50vw] bg-background-gray shadow-lg w-[35%]">
-        <div className="banner flex items-center justify-between m-0 px-3 pr-1 py-2">
-          <div className="flex items-center gap-2 text-text-light text-[1.7rem]">
+      <div className="container relative top-40 bg-background-gray shadow-lg left-[25%] w-[70vw] sm:left-[50vw] sm:w-[35%]">
+        <div className="banner m-0 flex items-center justify-between px-2 py-2 pr-1">
+          <div className="flex items-center gap-2 text-lg sm:text-[1.7rem] text-text-light">
             <img src="../src/assets/icons/guide-white.png" alt="Guide" className="h-8" />
             {language === 'ko' ? '환영합니다!' : 'Welcome!'}
           </div>
@@ -28,9 +28,9 @@ function GuidePopup({ isOpen, onClose }: GuidePopupProps) {
             <IconButton
               iconName="world"
               alt="language change"
-              size={23}
+              size={27}
               paddingRight={1}
-              className="mr-2"
+              className="sm:mr-2"
               handleClick={toggleLanguage}
             />
             <IconButton
@@ -38,7 +38,7 @@ function GuidePopup({ isOpen, onClose }: GuidePopupProps) {
               alt="Close"
               size={23}
               paddingRight={1}
-              className="mr-2"
+              className="mr-1"
               handleClick={onClose}
             />
           </div>
@@ -67,4 +67,4 @@ Plan, track, and achieve with Task95! ✅`}
   );
 }
 
-export default GuidePopup; 
+export default GuidePopup;

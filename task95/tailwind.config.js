@@ -6,9 +6,6 @@ export default {
   ],
   theme: {
     fontFamily: {
-      'sans': ['DungGeunMo', 'sans-serif'],
-      'serif': ['DungGeunMo', 'serif'],
-      'mono': ['DungGeunMo', 'monospace'],
       'dunggeunmo': ['DungGeunMo', 'sans-serif']
     },
     extend: {

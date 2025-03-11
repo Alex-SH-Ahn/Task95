@@ -4,7 +4,7 @@ import GuidePopup from '../components/GuidePopup';
 import Todo from './Todo';
 
 function MainPage() {
-  const [isGuideOpen, setIsGuideOpen] = useState(true);
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
 
   return (
     <div className="container h-[80vh] w-[80vw]">
