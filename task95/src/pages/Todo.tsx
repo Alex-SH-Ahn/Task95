@@ -1,11 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import TextButton from '../components/TextButton';
 import IconButton from '../components/IconButton';
 import TodoItem from '../components/TodoItem';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'; // @mui/lab 대신 이것을 사용
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs, { Dayjs } from 'dayjs';
+import { Dayjs } from 'dayjs';
 import ErrorPopup from '../components/ErrorPopup';
 
 interface Todo {
@@ -68,12 +68,15 @@ function Todo() {
 
   const handleAddTodo = () => {
     if (selectedDate && inputText) {
-      setTodos([...todos, {
-        id: todos.length + 1,
-        text: inputText,
-        dueDate: selectedDate.toDate(),
-        isCompleted: false,
-      }]);
+      setTodos([
+        ...todos,
+        {
+          id: todos.length + 1,
+          text: inputText,
+          dueDate: selectedDate.toDate(),
+          isCompleted: false,
+        },
+      ]);
       setInputText('');
       setSelectedDate(null);
     } else {
@@ -119,8 +122,8 @@ function Todo() {
           onClick={() => setInputOpen(true)}
         />
       ) : (
-        <form 
-          action="" 
+        <form
+          action=""
           className="relative mt-3 flex w-[100%] items-center self-start"
           onSubmit={(e) => e.preventDefault()}
         >
@@ -131,7 +134,7 @@ function Todo() {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
           />
-          <div className="absolute right-[20%] top-1 flex max-h-[35px] items-center md:right-[9%]">
+          <div className="absolute right-[17.5%] top-1 flex max-h-[35px] items-center md:right-[6%]">
             <div
               className="group m-0 flex cursor-pointer items-center rounded-lg p-0 px-2"
               onClick={(e) => {
@@ -145,7 +148,7 @@ function Todo() {
                 alt="Calendar"
                 size={20}
                 paddingRight={0}
-                className="mr-2 max-h-[35px] max-w-[35px] group-hover:bg-background-darkGray"
+                className="mr-1 max-h-[35px] max-w-[35px] group-hover:bg-background-darkGray"
                 handleClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -173,11 +176,50 @@ function Todo() {
                   },
                   popper: {
                     sx: {
+                      '& .MuiPickersCalendarHeader-label': {
+                        fontFamily: 'DungGeunMo, sans-serif',
+                        fontSize: '1.2rem',
+                      },
                       '& .MuiPaper-root': {
                         backgroundColor: 'white',
-                        borderRadius: '4px',
-                        boxShadow: '0px 2px 8px rgba(0,0,0,0.15)',
+                        borderRadius: '0px',
+                        borderRight: '3px solid #E9ECEB',
+                        borderBottom: '3px solid #E9ECEB',
+                        borderLeft: '3px solid #565656',
+                        borderTop: '3px solid #565656',
+                        boxShadow: '0px 0px 0px rgba(0,0,0,0.0)',
                         zIndex: 9999,
+                      },
+                      '& .MuiPickersCalendar-root': {
+                        fontFamily: 'DungGeunMo, sans-serif',
+                      },
+                      '& .MuiPickersCalendarHeader-root': {
+                        fontFamily: 'DungGeunMo, sans-serif',
+                      },
+                      '& .MuiPickersDay-root': {
+                        fontFamily: 'DungGeunMo, sans-serif',
+                        fontSize: '1.2rem',
+                      },
+                      '& .MuiDayCalendar-weekDayLabel': {
+                        fontFamily: 'DungGeunMo, sans-serif',
+                        fontSize: '1rem',
+                      },
+                      '& .MuiPickersDay-root.Mui-selected': {
+                        fontFamily: 'DungGeunMo, sans-serif',
+                      },
+                      '& .MuiTypography-root': {
+                        fontFamily: 'DungGeunMo, sans-serif',
+                      },
+                      '& .MuiButtonBase-root': {
+                        fontFamily: 'DungGeunMo, sans-serif',
+                      },
+                      '& .MuiPickersToolbarText-root': {
+                        fontFamily: 'DungGeunMo, sans-serif',
+                      },
+                      '& .MuiPickersYear-yearButton': {
+                        fontFamily: 'DungGeunMo, sans-serif',
+                        fontSize: '1.2rem',
+                        color: '#393939',
                       },
                     },
                     placement: 'bottom-start',
@@ -191,22 +233,14 @@ function Todo() {
                     ],
                   },
                 }}
-                disablePortal={false} // 포털 사용
-                PopperProps={{
-                  keepMounted: false,
-                  disablePortal: false,
-                  onClick: (e: { preventDefault: () => void; stopPropagation: () => void; }) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  },
-                }}
+                disablePortal={false}
               />
             </LocalizationProvider>
           </div>
-          <TextButton 
-            text="OK" 
-            alt="OK" 
-            size={23} 
+          <TextButton
+            text="OK"
+            alt="OK"
+            size={23}
             className="mr-0 min-h-[40px] min-w-[5%]"
             onClick={handleAddTodo}
           />

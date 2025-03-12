@@ -1,14 +1,27 @@
 import { useState } from 'react';
 import IconButton from '../components/IconButton';
 import GuidePopup from '../components/GuidePopup';
+import AuthPopup from '../components/AuthPopup';
 import Todo from './Todo';
 
 function MainPage() {
   const [isGuideOpen, setIsGuideOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+
+  const handleAuthSubmit = (data: {
+    username: string;
+    password: string;
+    confirmPassword?: string;
+    rememberMe?: boolean;
+  }) => {
+    // 로그인/회원가입 처리
+    console.log(data);
+  };
 
   return (
-    <div className="container h-[80vh] w-[80vw]">
-      <div className="banner m-1 flex items-center justify-between sm:px-5 sm:py-3 px-2 py-1">
+    <div className="container absolute h-[80vh] w-[80vw]">
+      <div className="banner m-1 flex items-center justify-between px-2 py-1 sm:px-5 sm:py-3">
         <h1 className="text-3xl text-text-light md:text-4xl">Task95</h1>
         <div className="flex items-center justify-center">
           <IconButton
@@ -25,6 +38,7 @@ function MainPage() {
             size={20}
             paddingRight={1}
             className="mr-2"
+            handleClick={() => setIsAuthOpen(true)}
           />
           <IconButton
             iconName="github"
@@ -39,6 +53,14 @@ function MainPage() {
       <div className="flex h-[90%] w-[80vw] items-center justify-center">
         <Todo />
       </div>
+
+      <AuthPopup
+        isOpen={isAuthOpen}
+        mode={authMode}
+        onSubmit={handleAuthSubmit}
+        onClose={() => setIsAuthOpen(false)}
+        onModeChange={(newMode) => setAuthMode(newMode)}
+      />
 
       <GuidePopup isOpen={isGuideOpen} onClose={() => setIsGuideOpen(false)} />
     </div>
