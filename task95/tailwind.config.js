@@ -52,6 +52,9 @@ export default {
         '16': '4rem',
         '20': '5rem',
       },
+      textShadow: {
+        dark: '2px 2px 0px #565656',
+      },
     },
   },
   plugins: [
@@ -110,6 +113,9 @@ export default {
           '&::-webkit-scrollbar-button:end:decrement': {
             display: 'none',
           },
+        },
+        '.textShadow-dark': {
+          textShadow: '2px 2px 0px #565656',
         },
       });
     },

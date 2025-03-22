@@ -33,7 +33,10 @@ function TodoItem({ text, dueDate, isCompleted, onToggle }: TodoItemProps) {
           {text}
         </span>
         <div className="flex items-center text-xs sm:text-base text-gray-500">
-          <span>{dueDate.toLocaleDateString()}</span>
+          <span>
+            <span className="hidden md:inline">Due: </span>
+            {dueDate.toLocaleDateString()}
+          </span>
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ function ErrorPopup({ isOpen, onClose, message }: ErrorPopupProps) {
             <IconButton
               iconName="X"
               alt="Close"
-              size={23}
+              size={18}
               paddingRight={1}
               className="mr-1"
               handleClick={onClose}

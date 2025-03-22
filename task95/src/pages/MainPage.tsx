@@ -3,11 +3,14 @@ import IconButton from '../components/IconButton';
 import GuidePopup from '../components/GuidePopup';
 import AuthPopup from '../components/AuthPopup';
 import Todo from './Todo';
+import MyPage from '../components/MyPage';
 
 function MainPage() {
   const [isGuideOpen, setIsGuideOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+  const [isMyPageOpen, setIsMyPageOpen] = useState(true);
+  const [userId, setUserId] = useState('');
 
   const handleAuthSubmit = (data: {
     username: string;
@@ -17,6 +20,14 @@ function MainPage() {
   }) => {
     // 로그인/회원가입 처리
     console.log(data);
+  };
+
+  const handleAuthOpen = () => {
+    if (userId) {
+      setIsMyPageOpen(true);
+    } else {
+      setIsAuthOpen(true);
+    }
   };
 
   return (
@@ -38,7 +49,7 @@ function MainPage() {
             size={20}
             paddingRight={1}
             className="mr-2"
-            handleClick={() => setIsAuthOpen(true)}
+            handleClick={() => handleAuthOpen()}
           />
           <IconButton
             iconName="github"
@@ -53,6 +64,12 @@ function MainPage() {
       <div className="flex h-[90%] w-[80vw] items-center justify-center">
         <Todo />
       </div>
+
+      <MyPage
+        isOpen={isMyPageOpen}
+        userId={userId}
+        onClose={() => setIsMyPageOpen(false)}
+      />
 
       <AuthPopup
         isOpen={isAuthOpen}

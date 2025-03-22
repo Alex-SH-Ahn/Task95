@@ -78,7 +78,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ isOpen, mode, onSubmit, onClose, 
             <IconButton
               iconName="X"
               alt="Close"
-              size={23}
+              size={18}
               paddingRight={1}
               className="mr-1"
               handleClick={onClose}
@@ -141,7 +141,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ isOpen, mode, onSubmit, onClose, 
           )}
 
           <div className="flex w-full items-end justify-between">
-            <p>
+            <div>
               <p className="mr-1.5 hidden md:inline-block">
                 {mode === 'login' ? "Don't have an account?" : 'Already have account?'}
               </p>
@@ -151,7 +151,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ isOpen, mode, onSubmit, onClose, 
               >
                 {mode === 'login' ? 'Create an account' : 'Log in'}
               </button>
-            </p>
+            </div>
             <TextButton
               text={mode === 'login' ? 'Log In' : 'Sign Up'}
               alt="OK"

@@ -20,21 +20,21 @@ function Todo() {
   const [todos, setTodos] = useState<Todo[]>([
     {
       id: 1,
-      text: '똥싸기',
-      dueDate: new Date('2025-04-30'),
+      text: 'Buy groceries',
+      dueDate: new Date('2025-03-25'),
       isCompleted: false,
     },
     {
       id: 2,
-      text: '방구먹기',
-      dueDate: new Date('2025-03-10'),
-      isCompleted: true,
+      text: 'Buy groceries',
+      dueDate: new Date('2025-03-25'),
+      isCompleted: false,
     },
     {
       id: 3,
-      text: '방구 뀌기',
-      dueDate: new Date('2025-06-25'),
-      isCompleted: true,
+      text: 'Buy groceries',
+      dueDate: new Date('2025-03-25'),
+      isCompleted: false,
     },
   ]);
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
@@ -67,6 +67,13 @@ function Todo() {
   }, [todos, activeTab]);
 
   const handleAddTodo = () => {
+    if (inputText.length > 50 || !selectedDate || selectedDate.toDate() < new Date()) {
+      setIsErrorPopupOpen(true);
+      setInputText('');
+      setSelectedDate(null);
+      return;
+    }
+
     if (selectedDate && inputText) {
       setTodos([
         ...todos,
@@ -102,15 +109,21 @@ function Todo() {
       </div>
 
       <div className="container-todo -z-5 custom-scrollbar h-[84%] w-full -translate-y-1 overflow-y-scroll bg-background-white p-5">
-        {filteredTodos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            text={todo.text}
-            dueDate={todo.dueDate}
-            isCompleted={todo.isCompleted}
-            onToggle={() => handleToggleTodo(todo.id)}
-          />
-        ))}
+        {filteredTodos.length === 0 ? (
+          <p className="textShadow-dark text-center text-3xl text-background-darkGray">
+            Add your first new task!
+          </p>
+        ) : (
+          filteredTodos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              text={todo.text}
+              dueDate={todo.dueDate}
+              isCompleted={todo.isCompleted}
+              onToggle={() => handleToggleTodo(todo.id)}
+            />
+          ))
+        )}
       </div>
 
       {!inputOpen ? (
@@ -125,16 +138,19 @@ function Todo() {
         <form
           action=""
           className="relative mt-3 flex w-[100%] items-center self-start"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleAddTodo();
+          }}
         >
           <input
             type="text"
-            placeholder=" ~50 letters"
-            className="container-focus mr-2 min-h-[40px] w-[95%] self-start"
+            placeholder="~50 letters"
+            className="container-focus mr-2 min-h-[40px] w-[95%] self-start pl-2 outline-none"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
           />
-          <div className="absolute right-[17.5%] top-1 flex max-h-[35px] items-center md:right-[6%]">
+          <div className="absolute right-[21%] top-1 flex max-h-[35px] items-center max-[400px]:right-[25%] lg:right-[7%] 2xl:right-[6%]">
             <div
               className="group m-0 flex cursor-pointer items-center rounded-lg p-0 px-2"
               onClick={(e) => {
@@ -233,7 +249,7 @@ function Todo() {
                     ],
                   },
                 }}
-                disablePortal={false}
+                // disablePortal={false}
               />
             </LocalizationProvider>
           </div>
@@ -248,7 +264,7 @@ function Todo() {
       )}
 
       <ErrorPopup
-        message="Input your goal and due date"
+        message="Input valid task and date"
         isOpen={isErrorPopupOpen}
         onClose={() => setIsErrorPopupOpen(false)}
       />
